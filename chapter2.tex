@@ -1,0 +1,107 @@
+\chapter{Surface Integrals}
+\section{Parametrized Surfaces}
+There are three common ways to specify a functio in $\R^{3}$ :
+\begin{enumerate}
+	\item Explicitly: $z = f(x,y)$ where $(x,y)\in\mathcal{D} \subset \R^{2}$
+	\item Implicitly: $G(x,y,z) = K$
+	\item By range of function:  $\mathbf{r}:\mathcal{D}\subset \R^{2}\to\R^{3}$ 
+		where each $(u,v)\in\mathcal{D}\mapsto \mathbf{r}(u,v) = (x(u,v),y(u,v),z(u,v))$ .
+\end{enumerate}
+\begin{eg}
+	The unit sphere $G(x,y,z) = x^2 + y^2 + z^2 = 1$ can be parametrized as 
+	\[
+		\mathbf{r}(\theta,\varphi) = (\sin\varphi\cos\theta,\sin\varphi\sin\theta,\cos\varphi)
+	\] 
+	with $\theta\in[0,2\pi)$ and $\varphi\in(0,\pi)$.
+\end{eg}	
+\section{Tangent Planes}
+\begin{theorem}
+	Normal vectors to surfaces
+	\begin{itemize}
+		\item Let $\mathbf{r} : \mathcal{D}\subset \R^{2}\to\R^{3}$ be a parametrized surface and let $(x_0,y_0,z_0)=\mathrm{r}(u_0,v_0)$ be a point on the surface. Then
+			\begin{align*}
+				\mathrm{T}_u &= \frac{\partial \mathbf{r}}{\partial u} (u_0,v_0)\\
+				\mathbf{T}_v &= \frac{\partial \mathbf{r}}{\partial v} (u_0,v_0)\\
+				\mathbf{n} &= \mathbf{T}_u \times \mathbf{T}_v
+			\end{align*}
+			is normal to the surface.
+		\item Let $G(x,y,z)=K$ be a surface and let $(x_0,y_0,z_0)$ be a point on the surface. Then 
+			\[
+				\mathbf{n} = \bm{\nabla}G(x_0,y_0,z_0)
+			\] 
+			is normal to the surface.
+	\end{itemize}
+\end{theorem}
+\section{Surface Integrals}
+\begin{theorem}
+	For a parametrized surface $\mathbf{r}(u,v)$ 
+	\begin{align*}
+		\hat{\mathbf{n}}\mathrm{d}S &= \pm \frac{\partial \mathbf{r}}{\partial u} \times \frac{\partial \mathbf{r}}{\partial v} \mathrm{d}u\mathrm{d}v\\
+		\mathrm{d}S &= \left| \frac{\partial \mathbf{r}}{\partial u} \times \frac{\partial \mathbf{r}}{\partial v} \right| \mathrm{d}u\mathrm{d}v 
+	\end{align*}	
+\end{theorem}
+\begin{remark}
+	Note that the $\pm$ is because there are two unit normal vectors corresponding to the inside and outside of the surface.
+\end{remark}
+\begin{corollary}
+	For a surface $z = f(x,y)$ 
+	\begin{align*}
+		\hat{\mathbf{n}}\mathrm{d}S &= \pm \left( -f_x\ihat - f_y\jhat + \khat \right) \mathrm{d}x\mathrm{d}y\\
+		\mathrm{d}S &= \sqrt{1 + f_x^{2} + f_y^{2}}\mathrm{d}x\mathrm{d}y
+	\end{align*}
+\end{corollary}
+\begin{proof}
+	We may parametrize a surface given by $z = f(x,y)$ as
+	\[
+		\mathbf{r}(x,y) = x\ihat + y\jhat + f(x,y)\khat
+	\] 
+	then 
+	\begin{align*}
+		\frac{\partial \mathbf{r}}{\partial x} &= \ihat + f_x\khat\\
+		\frac{\partial \mathbf{r}}{\partial y} &= \jhat + f_y \khat\\
+		\hat{\mathbf{n}} = \frac{\partial \mathbf{r}}{\partial x} \times \frac{\partial \mathbf{r}}{\partial y} &= \det 
+		\begin{bmatrix}
+			\ihat & \jhat & \khat \\
+			1 & 0 & f_x \\
+			0 & 1 & f_y
+		\end{bmatrix}
+											   = -f_x \ihat - f_y \jhat + \khat
+	\end{align*}
+	
+\end{proof}
+And from this result:
+\begin{corollary}
+	For a surface $G(x,y,z) = K$, then 
+	\begin{align*}
+		\hat{\mathbf{n}}\mathrm{d}S &= \pm \frac{\bm{\nabla}G}{\bm{\nabla{G}}\cdot \khat} \mathrm{d}x\mathrm{d}y\\
+		\mathrm{d}S &= \left| \frac{\bm\nabla G}{\bm\nabla G \cdot \khat} \right| \mathrm{d}x\mathrm{d}y
+	\end{align*}
+	and holds for $\mathrm{d}x\mathrm{d}z$ and $\mathrm{d}y\mathrm{d}z$.
+\end{corollary}
+\begin{definition}
+	We define a surface integral to be
+	\[
+		\iint_S \rho \mathrm{d}S
+	\] 
+	which gives the value of a function $\rho$ across the surface. If we let $\rho = 1$ we get the surface are, that is:
+	\[
+		A_S = \iint_S \mathrm{d}S
+	\] 
+\end{definition}
+\section{Flux Integrals}
+\begin{definition}
+	We define a flux integral to be 
+	\[
+		\iint_S \mathbf{F} \cdot \hat{\mathbf{n}}\mathrm{d}S
+	\]
+	which describes the rate at which some vector field $\mathbf{F}$ "flows" or crosses through a surface $S$.
+\end{definition}
+\begin{lemma}
+	Let a fluid have density described by $\rho(x,y,z,t)$ and velocity described by $ \mathbf{v}(x,y,z,t)$. Then, the rate at which it is crossing through a surface $S$ is
+	\[
+		\Phi = \iint_S \rho \mathbf{v}\cdot\hat{\mathbf{n}}\mathrm{d}S
+	\] 
+	where $\hat{\mathbf{n}}(x,y,z)$ is a unit normal vector to $S$.
+	If this is positive the fluid is crossing opposite to the normal.
+\end{lemma}
+
