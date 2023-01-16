@@ -1,0 +1,78 @@
+\documentclass[twocolumn,10pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage{enumitem}
+\usepackage{subcaption}
+
+\usepackage{amsmath, amsfonts, mathtools, amsthm, amssymb}
+\usepackage{bm}
+
+
+\usepackage{newpxtext, newpxmath}
+%\usepackage{newtxtext,newtxmath}
+%\usepackage[math]{iwona}
+%\usepackage{cmbright}
+
+\begin{document}
+\section{Differential Forms}	
+In $\mathbb{R}^{3}$ differential forms can be defined as:	
+\begin{itemize}
+	\item A 0-form is a function $f(x,y,z)$.
+	\item A 1-form is of the form
+		\[
+			F_1\mathrm{d}x + F_2\mathrm{d}y + F_3\mathrm{d}z
+		\] 
+	\item A 2-form is of the form
+		\[
+			F_1\mathrm{d}y\wedge \mathrm{d}z + F_2\mathrm{d}z \wedge \mathrm{d}x + F_3\mathrm{d}x\wedge \mathrm{d}y
+		\] 
+	\item A 3-form is of the form
+		\[
+			f(x,y,z)\mathrm{d}x\wedge \mathrm{d}y\wedge \mathrm{d}z
+		\] 
+\end{itemize}
+Differential forms behave somewhat as expected with addition.
+\subsection{Multiplication of Differential Forms}
+Multiplication of differential forms is \textbf{noncommutative} (but it is associative). Multiplication by 0-forms (i.e. functions) behaves as you would expect and is usually written without the $\wedge$.\\
+Let $\omega$ be a $k$-form and $\omega'$ be a $k'$-form. Their product is a $(k+k')$-form and is denoted by $\omega \wedge \omega'$. It behaves as follows:
+\begin{enumerate}[label=\alph*.]
+	\item $\omega \wedge \omega'$ is linear. That is, $\omega = f_1\omega_1 + f_2\omega_2$ then
+		\[
+			(f_1\omega_1 + f_2\omega_2)\wedge \omega' = f_1(\omega_1\wedge \omega') + f_2(\omega_2\wedge \omega')
+		\] 
+	\item $\omega \wedge \omega' = (-1)^{kk'}\omega' \wedge \omega$ 
+	\item $\omega \wedge \omega = 0$
+\end{enumerate}
+\subsection{Differentiation of Differential Forms}
+One of the main reasons differential forms are so useful is that they very nicely with differentiation. Let $\omega$ be a $k$-form, then 
+\[
+	\mathrm{d}:= \omega_k \to \omega_{k+1}
+\] 
+Still working within the scope of $\mathbb{R}^{3}$, consider a $0$-form $f $. Then
+\[
+	\mathrm{d}f = \frac{\partial f}{\partial x} \mathrm{d}x + \frac{\partial f}{\partial y} \mathrm{d}y + \frac{\partial f}{\partial z} \mathrm{d}z
+\] 
+Is the equivalent $(k+1)$-form after differentation. Note that this is an edge case, for all other $k$-forms, the differential operator behaves as follows:
+\begin{enumerate}
+	\item Apply $\mathrm{d}$ to coefficients;
+	\item Expand with the wedge product.
+\end{enumerate}
+\subsubsection{Example:}
+Let $\omega$ be a $1$-form. Then
+\begin{align*}
+	\omega &= P\mathrm{d}x + Q\mathrm{d}y + R \mathrm{d}z\\
+	\mathrm{d} \omega &= \mathrm{d} P\wedge \mathrm{d} x + \mathrm{d} Q \wedge \mathrm{d} y + \mathrm{d} R\wedge \mathrm{d} z\\
+					  &= (P_x \mathrm{d} x + P_y \mathrm{d} y + P_z \mathrm{d} z)\wedge \mathrm{d} x +\\
+					  &+ (Q_x \mathrm{d} x + Q_y \mathrm{d} y + Q_z \mathrm{d} z)\wedge \mathrm{y}  + \\
+					  &+ (R_x \mathrm{d} x + R_y \mathrm{d} y + R_z \mathrm{d} z)\wedge \mathrm{d} z =\\
+					  &= P_y \mathrm{d} y \wedge \mathrm{d} x + P_z \mathrm{d} z \wedge \mathrm{d} x + \\
+					  &+ Q_x \mathrm{d} x \wedge \mathrm{d} y + Q_z \mathrm{d} z \wedge \mathrm{d} y +\\
+					  &+ R_x \mathrm{d} x \wedge \mathrm{d} z + R_y \mathrm{d} y \wedge \mathrm{d} z =\\
+					  &= (R_y - Q_z)\mathrm{d} y \wedge \mathrm{d} z + (P_z - R_x) \mathrm{d} z \wedge \mathrm{d} x + (Q_x - P_y)\mathrm{d} x \wedge \mathrm{d}y
+\end{align*}
+Which corresponds to the \textbf{curl} operation.
+\subsection{Integration}
+\end{document}
+
